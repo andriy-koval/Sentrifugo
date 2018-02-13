@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+
+  sentrifugo:
+    build: .
+    image: sentrifugo:latest
+    container_name: sentrifugo
+    ports:
+      - "80:80"
+
+  sentrifugo_db:
+    image: mariadb:10.0.34
+    container_name: sentrifugo_db
+    restart: always
+    environment:
+      - MYSQL_DATABASE=sentrifugo
+      - MYSQL_USER=sentrifugo
+      - MYSQL_PASSWORD=Sentrifugo
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no
+      - MYSQL_ROOT_PASSWORD=mysql
+    ports:
+      - "3306:3306"
