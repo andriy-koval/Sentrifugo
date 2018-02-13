@@ -30,7 +30,9 @@ WORKDIR /var/www/html
 COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 COPY php.ini /etc/php/7.0/cli/php.ini
 COPY php_apache.ini /etc/php/7.0/apache2/php.ini
-COPY --chown=www-data:www-data sentrifugo /var/www/html/sentrifugo
+COPY sentrifugo /var/www/html/sentrifugo
+
+RUN chown -R www-data:www-data /var/www/html/sentrifugo
 
 EXPOSE 80
 
